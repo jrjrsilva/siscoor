@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/layout-padrao}">
+<head>
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/lista-produtos.css}" />
+</head>
+
+<body>
+	<section layout:fragment="conteudo">
+		<div class="page-header">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-xs-8">
+							<h1>
+								Importando produtos
+							</h1>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="container-fluid">
+				<div class="alert  alert-success"
+					th:if="${!#strings.isEmpty(mensagem)}">
+					<i class="fa fa-check-circle"></i>
+
+					<span th:text="${mensagem}">Mensagem sucesso!</span>
+				</div>
+				
+				<div >
+					<form method="POST" action="/upload" enctype="multipart/form-data">
+    					<input type="file" name="file" /><br/><br/>
+    					<select id="tipoUpload" name="tipoUpload">
+    					<option value="-1">Selecione</option>
+    					<option value="3">Carregar demanda</option>
+    					<option value="4">Estoque demanda</option>
+    					<option value="5">Pedidos demanda</option>
+    					<option value="1">Carregar faturamento</option>
+    					<option value="2">Carregar produtos</option>
+    					<option value="6">Ajustar grupo</option>
+    					<option value="7">Carregar inventario</option>
+    					</select>
+    					<input type="submit" value="Enviar" />
+					</form>
+				</div>
+
+			</div>
+	</section>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:p="http://primefaces.prime.com.tr/ui"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core">
+ <h:head>
+ <title>Exemplo Cadastro FOTO - Primefaces</title>
+ </h:head>
+ <p:dialog id="janela" widgetVar="janela" width="450" position="top" modal="true">
+ <p:outputPanel id="painel">
+ <h:form id="formulario">
+ <p:messages id="mensagens"/>
+ <h:panelGrid columns="2">
+ <h:outputText value="Nome"/>
+ <h:inputText value="#{jogadorController.jogador.nome}" style="width: 300px"/>
+ <h:outputText value="Descrição"/>
+ <h:inputTextarea rows="6" value="#{jogadorController.jogador.descricao}" style="width: 300px"/>
+ <h:outputText value="Foto"/>
+ <p:graphicImage value="#{jogadorController.imagem}" id="imagem" cache="false"/>
+ <h:column/>
+ <h:column>
+ <p:fileUpload  sizeLimit="204800" auto="true" widgetVar="uploader" label="Procurar..."  fileUploadListener="#{jogadorController.handleFileUpload}"
+ allowTypes="*.jpg;*.png;*.gif;" description="Images" update="imagem" multiple="false" customUI="true"/>
+ </h:column>
+ </h:panelGrid>
+ <h:panelGrid columns="3">
+ <p:commandButton image="ui-icon-disk" value="Salvar" action="#{jogadorController.salva}" ajax="true" update="listaJogadores mensagens"/>
+ </h:panelGrid>
+ </h:form>
+ </p:outputPanel>
+ </p:dialog>
+ <p:outputPanel id="listaJogadores">
+ <h:form>
+ <p:panel header="Lista de Jogadores" style="width: 450px;">
+ <p:commandButton image="ui-icon-circle-plus" value="Novo" action="#{jogadorController.novo}" ajax="true" update="painel" oncomplete="janela.show()"/>
+ <br></br><br></br>
+ <p:dataTable emptyMessage="Nenhum jogador localizado." value="#{jogadorController.jogadores}" var="jogador" selectionMode="single" paginator="true" rows="6" dynamic="true">
+ <p:column headerText="Nome">
+ <h:outputText value="#{jogador.nome}"/>
+ </p:column>
+ <p:column style="width: 60px">
+ <p:commandButton image="ui-icon-search" action="#{jogadorController.mudaJogador}" update="painel" ajax="true" immediate="true" oncomplete="janela.show()">
+ <f:setPropertyActionListener value="#{jogador}" target="#{jogadorController.jogadorSelecionado}"/>
+ </p:commandButton>
+ <p:commandButton image="ui-icon-circle-close" action="#{jogadorController.mudaJogador}" update="painel" ajax="true" immediate="true" oncomplete="janela.show()">
+ <f:setPropertyActionListener value="#{jogador}" target="#{jogadorController.jogadorSelecionado}"/>
+ </p:commandButton>
+ </p:column>
+ </p:dataTable>
+ </p:panel>
+ </h:form>
+ </p:outputPanel>
+ </html>

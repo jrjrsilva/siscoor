@@ -1,0 +1,27 @@
+.tamanho{
+	
+	padding-left: 10%
+}
+
+.filho{
+	width:25%;
+}
+
+.alinhamento{
+	margin: auto;
+	padding-left: 15%;
+}
+
+.bordas{
+	border-width: medium;
+    border-style: solid;
+    border-color: #00f;
+}
+
+.centralizado {
+  margin: 0 auto;
+  width: 600px;
+  background: #cfcfcf;
+  padding: 20px;
+  color: black;
+}
