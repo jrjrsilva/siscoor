@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.clsolucoes.siscoor.domain.Aluno;
 import com.clsolucoes.siscoor.services.AlunoService;
 
 //classe controladora
@@ -23,7 +24,13 @@ public class AlunoController {
 		modelAndView.addObject("alunos",alunoService.findAll());
 		return modelAndView;
 	}
-	
+
+	@GetMapping("/novo")
+	public ModelAndView novo(Aluno aluno) {
+		ModelAndView modelAndView = new ModelAndView("aluno/cadastro");
+		modelAndView.addObject(aluno);
+		return modelAndView;
+	}
 	
 	
 }
